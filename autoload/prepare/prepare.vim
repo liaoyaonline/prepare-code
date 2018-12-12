@@ -19,6 +19,8 @@ function! s:gen_prepare_code_by_suffix(suffix)
         call <sid>gen_python_code()
     elseif a:suffix == "c"
         call <sid>gen_c_code()
+    elseif a:suffix == "html"
+        call <sid>gen_html_code()
     elseif a:suffix == "h" || a:suffix == "hpp"
         call <sid>gen_cpp_header_code()
     elseif a:suffix == "cpp" || a:suffix == "cc"
@@ -41,6 +43,12 @@ endfunction
 " 生成c代码
 function! s:gen_c_code()
     let lines = <sid>get_prepare_code("c")
+    call prepare#util#write_texts(lines)
+endfunction
+
+" 生成html代码
+function! s:gen_html_code()
+    let lines = <sid>get_prepare_code("html")
     call prepare#util#write_texts(lines)
 endfunction
 
